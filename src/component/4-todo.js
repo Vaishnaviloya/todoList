@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import List from './2-list'
+import React, {useState} from "react";
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import List2 from "./4-list";
 
-
-const Todolists = () => {
+const Todo = () => {
 
     const [state, setState] = useState("")
     const [items, setItems] = useState([])
@@ -10,7 +11,6 @@ const Todolists = () => {
     const inputEvent = (event) => {
         setState(event.target.value)
     }
-
     const ButtClick = () => {
         setItems((oldItems) => {
             return [...oldItems, state]
@@ -27,21 +27,20 @@ const Todolists = () => {
         })
     }
 
-    return (
+
+    return(
         <>
             <div className="Main_div">
                 <div className="Card">
-                    <br />
-                    <h1 className="Heading">To Do List</h1>
-                    <br />
-                    <input type="text" placeholder="Add an Item" value={state} onChange={inputEvent} />
-                    <button className="butt" onClick={ButtClick}>+</button>
-
+                    <br/>
+                    <h2>TODO List</h2>
+                    <input type = "text" placeholder = "Add an Item" value={state} onChange={inputEvent} />
+                    <Button className="butt" onClick={ButtClick}><AddIcon /></Button>
                     <ol>
                         {/* <li>{state}</li> */}
                         {items.map((itemval, index) => {
                             return (
-                                <List
+                                <List2
                                     key={index}
                                     id={index}
                                     text={itemval}
@@ -50,11 +49,10 @@ const Todolists = () => {
                             )
                         })}
                     </ol>
-
                 </div>
             </div>
         </>
     )
 }
 
-export default Todolists
+export default Todo
